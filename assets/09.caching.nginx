@@ -1,0 +1,33 @@
+server {
+  listen 82;
+  server_name 34.28.23.228;
+
+  access_log /var/log/nginx/react-app.log combined if=$loggable;
+  proxy_cache_key $scheme$proxy_host$request_uri;
+
+  proxy_cache cache;
+
+
+  proxy_cache_revalidate on; # NGINX includes the If-Modified-Since field in the header of the GET request it sends to the origin server.
+  proxy_cache_min_uses 3; # number of request after cache, default 1
+  proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504; # use stale files if errors or timeouts
+  proxy_cache_background_update on;
+  proxy_cache_lock on; # N request the same file, N-1 wait and 1 go to origin file
+
+  proxy_cache_valid 200 301 302 60s;
+  location / {
+    # try_files $uri $uri/ $uri.html =404;
+    proxy_pass http://localhost:3001;
+
+
+    add_header X-Cache-Status $upstream_cache_status;
+
+    proxy_ignore_headers Cache-Control;
+
+
+    proxy_http_version 1.1;
+    proxy_set_header Connection "";
+
+
+  }
+}

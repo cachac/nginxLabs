@@ -1,0 +1,10 @@
+FROM nginx:stable-alpine
+# RUN useradd -rm -d /home/www-data -g root -G sudo -u 1001 www-data
+RUN rm /etc/nginx/conf.d/default.conf
+COPY react-nice-resume /usr/share/nginx/html
+COPY docker.nginx /etc/nginx/nginx.conf
+
+EXPOSE 83
+
+# USER www-data
+CMD ["nginx", "-g", "daemon off;"]
