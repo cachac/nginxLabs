@@ -9,12 +9,18 @@ events {
 }
 
 http {
-	# access_log off;
+	sendfile on;
+  tcp_nopush on;
+  types_hash_max_size 2048;
+  include /etc/nginx/mime.types;
+  default_type application/octet-stream;
+
+	access_log off;
 	error_log  error;
 
 	server {
 
-		listen 83;
+		listen 8080;
 		root /usr/share/nginx/html;
 
 
