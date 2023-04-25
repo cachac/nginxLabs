@@ -1,8 +1,10 @@
 FROM nginx:stable-alpine
-RUN adduser -D www-datax
 
 RUN rm /etc/nginx/conf.d/default.conf
-COPY react-nice-resume /usr/share/nginx/html
-COPY docker.nginx /etc/nginx/nginx.conf
+
+COPY assets/react-nice-resume /usr/share/nginx/html
+COPY assets/docker.nginx /etc/nginx/nginx.conf
+
 EXPOSE 8080
+
 CMD ["nginx", "-g", "daemon off;"]

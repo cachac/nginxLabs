@@ -1,0 +1,7 @@
+
+
+
+
+# vim resume.conf
+# sudo ln -s /etc/nginx/sites-available/resume.conf /etc/nginx/sites-enabled/resume.conf
+# nginx -s reload
