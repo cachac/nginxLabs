@@ -4,7 +4,7 @@ server {
 
 	root /var/www/html/blog-app;
 
-	access_log /var/log/nginx/blog.log;
+	access_log /var/log/nginx/blog.log combined if=$loggable;
 
 	location / {
 		try_files $uri $uri/ $uri.html =404;
