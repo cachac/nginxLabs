@@ -3,7 +3,7 @@ FROM nginx:stable-alpine
 RUN rm /etc/nginx/conf.d/default.conf
 
 COPY assets/react-resume-app /usr/share/nginx/html
-COPY assets/docker.nginx /etc/nginx/nginx.conf
+COPY assets/10.docker.nginx /etc/nginx/nginx.conf
 
 EXPOSE 8080
 
